@@ -1,18 +1,30 @@
 package com.example.recipeapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
 import com.example.recipeapp.todo.data.Recipe
+import com.example.recipeapp.ui.theme.RecipeAdapter
+
 
 class MainActivity : AppCompatActivity() {
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
+    private lateinit var adapter: RecipeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupRecyclerView()
         fetchData()
+    }
+
+    private fun setupRecyclerView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        adapter = RecipeAdapter()
+        recyclerView.adapter = adapter
     }
 
     private fun fetchData() {
@@ -20,13 +32,10 @@ class MainActivity : AppCompatActivity() {
             try {
                 val recipes = RetrofitClient.recipeApiService.getAllRecipes()
                 withContext(Dispatchers.Main) {
-                    // Update UI with the fetched recipes
-                    // For example, update a RecyclerView adapter here
                     displayRecipes(recipes)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    // Handle the error, show a message to the user
                     showError(e.message ?: "An error occurred")
                 }
             }
@@ -34,13 +43,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayRecipes(recipes: List<Recipe>) {
-        // Implement the logic to display recipes in your UI
-        // For example, set the data to a RecyclerView adapter
+        adapter.submitList(recipes)
     }
 
     private fun showError(message: String) {
-        // Implement the logic to show error messages to the user
-        // For example, use a Toast or a Snackbar
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {
