@@ -1,46 +1,50 @@
 package com.example.recipeapp
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.recipeapp.ui.theme.RecipeAppTheme
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.*
+import com.example.recipeapp.todo.data.Recipe
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            RecipeAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
+        setContentView(R.layout.activity_main)
+
+        fetchData()
+    }
+
+    private fun fetchData() {
+        coroutineScope.launch {
+            try {
+                val recipes = RetrofitClient.recipeApiService.getAllRecipes()
+                withContext(Dispatchers.Main) {
+                    // Update UI with the fetched recipes
+                    // For example, update a RecyclerView adapter here
+                    displayRecipes(recipes)
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    // Handle the error, show a message to the user
+                    showError(e.message ?: "An error occurred")
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun displayRecipes(recipes: List<Recipe>) {
+        // Implement the logic to display recipes in your UI
+        // For example, set the data to a RecyclerView adapter
+    }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RecipeAppTheme {
-        Greeting("Android")
+    private fun showError(message: String) {
+        // Implement the logic to show error messages to the user
+        // For example, use a Toast or a Snackbar
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        coroutineScope.cancel() // Cancel the coroutine scope when the activity is destroyed
     }
 }
