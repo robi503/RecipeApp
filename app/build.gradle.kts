@@ -52,6 +52,11 @@ android {
 
 dependencies {
 
+    val roomVersion = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
     implementation ("androidx.recyclerview:recyclerview:1.3.2")
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
