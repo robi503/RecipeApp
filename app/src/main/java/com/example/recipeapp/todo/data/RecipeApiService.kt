@@ -9,6 +9,6 @@ interface RecipeApiService {
     suspend fun getAllRecipes(): List<Recipe>
 
     @POST("item")
-    suspend fun postRecipe(@Body recipeData: Map<String, Any>)
+    suspend fun postRecipe(@Body PostRecipe: PostRecipe)
 
 }

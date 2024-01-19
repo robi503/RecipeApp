@@ -21,7 +21,9 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
     override fun onBindViewHolder(holder: RecipeViewHolder, position: Int) {
         val recipe = recipes[position]
         holder.textViewName.text = recipe.name
-        // Bind other recipe properties to other views in the holder
+        holder.textViewAuthor.text = recipe.author
+        holder.textViewDescription.text = recipe.description
+        holder.textViewPreparationTime.text = recipe.preparationTime
     }
 
     override fun getItemCount(): Int = recipes.size
@@ -33,7 +35,9 @@ class RecipeAdapter : RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder>() {
 
     class RecipeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewName: TextView = view.findViewById(R.id.textViewName)
-        // Initialize other views here
+        val textViewAuthor: TextView = view.findViewById(R.id.textViewAuthor)
+        val textViewDescription: TextView = view.findViewById(R.id.textViewDescription)
+        val textViewPreparationTime: TextView = view.findViewById(R.id.textViewPreparationTime)
     }
 }
 

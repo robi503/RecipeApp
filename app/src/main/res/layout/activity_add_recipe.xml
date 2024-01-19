@@ -32,4 +32,11 @@
         android:text="@string/submit_recipe"
         android:layout_gravity="center_horizontal"/>
 
+    <Button
+        android:id="@+id/exitAddButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/exit"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

@@ -10,5 +10,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/recipe_name" />
-    <!-- Add more views as needed -->
+
+    <TextView
+        android:id="@+id/textViewAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe_author" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe_description" />
+
+    <TextView
+        android:id="@+id/textViewPreparationTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe_preparation_time" />
 </LinearLayout>

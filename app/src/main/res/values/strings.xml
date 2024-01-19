@@ -13,4 +13,7 @@
     <string name="add_recipe">Add recipe</string>
     <string name="preparation_time">Preparation Time</string>
     <string name="submit_recipe">Submit Recipe</string>
+    <string name="recipe_author">Recipe Author</string>
+    <string name="recipe_preparation_time">Recipe Preparation Time</string>
+    <string name="exit">Exit</string>
 </resources>
