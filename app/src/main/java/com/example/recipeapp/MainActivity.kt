@@ -1,5 +1,6 @@
 package com.example.recipeapp
 
+import com.example.recipeapp.auth.AddRecipeActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: RecipeAdapter
     private lateinit var auth: FirebaseAuth
     private lateinit var logoutButton: Button
+    private lateinit var addRecipeButton: Button
     private lateinit var userEmailTextView: TextView
 
 
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         logoutButton = findViewById(R.id.logout_button)
+        addRecipeButton = findViewById(R.id.add_recipe_button)
         userEmailTextView = findViewById(R.id.userEmail)
         val currentUser = auth.currentUser
 
@@ -49,6 +52,11 @@ class MainActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             val loginIntent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(loginIntent)
+            finish() // Close MainActivity
+        }
+        addRecipeButton.setOnClickListener{
+            val addRecipeIntent = Intent(this@MainActivity, AddRecipeActivity::class.java)
+            startActivity(addRecipeIntent)
             finish() // Close MainActivity
         }
     }

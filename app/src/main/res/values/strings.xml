@@ -10,4 +10,7 @@
     <string name="click_to_login">Click to login</string>
     <string name="click_to_register">Click to register</string>
     <string name="logout">Logout</string>
+    <string name="add_recipe">Add recipe</string>
+    <string name="preparation_time">Preparation Time</string>
+    <string name="submit_recipe">Submit Recipe</string>
 </resources>
