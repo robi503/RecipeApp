@@ -3,4 +3,11 @@
     <string name="recipe_name">Recipe Name</string>
     <string name="recipe_description">Recipe Description</string>
     <string name="recipe_name1">Recipe Name</string>
+    <string name="Login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="click_to_login">Click to login</string>
+    <string name="click_to_register">Click to register</string>
+    <string name="logout">Logout</string>
 </resources>

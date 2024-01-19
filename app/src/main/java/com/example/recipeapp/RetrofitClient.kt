@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
     val retrofit = Retrofit.Builder()
-        .baseUrl("http://127.0.0.1:3000/") // Replace with your server's IP
+        .baseUrl("http://10.0.2.2:3000/") // Replace with your server's IP
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
